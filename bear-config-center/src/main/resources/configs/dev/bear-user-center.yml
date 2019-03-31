@@ -1,0 +1,84 @@
+logging:
+  level:
+    root: info
+    com.bear: debug
+#  file: logs/${spring.application.name}.log
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://local.mysql.com:3306/bear_user?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    username: bear
+    password: Bear123!
+    druid:
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      stat-view-servlet:
+        allow:  #127.0.0.1 限制只允许该IP访问
+  rabbitmq:
+    host: local.rabbitmq.com
+    port: 5672
+    username: bear-dev
+    password: bear-dev
+    virtual-host: /
+  redis:
+    host: local.redis.com
+    port: 6379
+    password: Bear123!
+    timeout: 10s
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1ms
+  mvc:
+    servlet:
+      load-on-startup: 1
+  aop:
+    proxy-target-class: true
+  zipkin:
+    base-url: http://localhost:9411
+    enabled: true
+    sender:
+      type: web
+mybatis:
+  type-aliases-package: com.bear.common.entity.user
+  mapper-locations: classpath:/mapper/*
+  configuration:
+    mapUnderscoreToCamelCase: true
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://local.gateway.com:8080/api-o/user-me
+      prefer-token-info: false
+wechat:
+  domain: http://api.gateway.com:8080/api-u
+  infos:
+    app1:
+      appid: xxx
+      secret: xxx
+    app2:
+      appid: xxx
+      secret: xxx
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
