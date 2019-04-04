@@ -1,20 +1,27 @@
 spring:
   application:
     name: bear-register-center
+  security:
+    user:
+      name: register
+      password: reg123!
 server:
   port: 8761
 eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://local.register.com:${server.port}/eureka/
-    register-with-eureka: true
-    fetch-registry: false
-    registry-fetch-interval-seconds: 5
   instance:
     lease-expiration-duration-in-seconds: 15
     lease-renewal-interval-in-seconds: 5
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
+    hostname: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+    #Eureka服务注册中心也会将自己作为客户端来尝试注册它自己 true,
+    register-with-eureka: true
+    fetch-registry: false
+    registry-fetch-interval-seconds: 5
+
   server:
     enable-self-preservation: false
     eviction-interval-timer-in-ms: 3000
