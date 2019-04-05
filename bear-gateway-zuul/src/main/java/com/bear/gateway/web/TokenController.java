@@ -1,5 +1,6 @@
 package com.bear.gateway.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bear.common.constants.CommonConstants;
 import com.bear.common.constants.CredentialType;
 import com.bear.common.entity.log.Log;
@@ -47,6 +48,7 @@ public class TokenController {
      */
     @PostMapping("/sys/login")
     public Map<String, Object> login(String username, String password) {
+        log.info("username：{}",username);
         Map<String, String> parameters = new HashMap<>();
         parameters.put(OAuth2Utils.GRANT_TYPE, "password");
         parameters.put(OAuth2Utils.CLIENT_ID, CommonConstants.CLIENT_ID);
@@ -57,7 +59,11 @@ public class TokenController {
         parameters.put("username", username + "|" + CredentialType.USERNAME.name());
         parameters.put("password", password);
 
+        log.info("parameters : {}", JSONObject.toJSON(parameters));
+
         Map<String, Object> tokenInfo = oauth2Client.postAccessToken(parameters);
+
+        log.info("tokenInfo : {}", JSONObject.toJSON(tokenInfo));
         saveLoginLog(username, "用户名密码登陆");
 
         return tokenInfo;

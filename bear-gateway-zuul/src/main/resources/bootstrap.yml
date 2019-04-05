@@ -4,7 +4,7 @@ spring:
   security:
     user:
       name: register
-      password: reg123!
+      password: reg123reg!
   cloud:
     config:
       discovery:
@@ -12,6 +12,9 @@ spring:
         serviceId: bear-config-center
       profile: dev
       fail-fast: true
+    inetutils:
+      # 忽略内网网卡 ignored-interfaces[0]: eth0
+      preferred-networks: 182.61.26.50
 server:
   port: 8080
 eureka:
@@ -20,7 +23,9 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
-    hostname: local.register.com
+    hostname: 149.28.186.139
+    #当机器有多个网卡时，最好指定Ip注册到注册中心
+    ip-address: 127.0.0.1
   client:
     serviceUrl:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:8761/eureka/

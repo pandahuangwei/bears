@@ -58,6 +58,7 @@
 ## 2019.04.04 增加注册中心的访问权限控制
 
 ## 2019.04.05 随机端口修改为配置端口
+1、随机端口修改为配置端口，考虑到防火墙端口的开放。除非在局域网内关闭防火墙的情况下才使用随机端口
 ```yaml
 server:
   port: 0
@@ -77,4 +78,16 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
+```
+2、多网卡时，指定注册到注册中心的ip，不然多个网卡时，会导致应用访问不到
+```yaml
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+    hostname: local.register.com
+    #当机器有多个网卡时，最好指定Ip注册到注册中心
+    ip-address: 127.0.0.1
 ```

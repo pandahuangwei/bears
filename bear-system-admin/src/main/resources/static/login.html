@@ -67,7 +67,7 @@
 			$.ajax({
 				type : 'post',
 				url : domainName + '/sys/login',
-				timeout : 5000, //超时时间设置，单位毫秒
+				timeout : 20000, //超时时间设置，单位毫秒
 				data : $("#login-form").serialize(),
 				success : function(data) {
 				    //将access_token和refresh_token写入本地

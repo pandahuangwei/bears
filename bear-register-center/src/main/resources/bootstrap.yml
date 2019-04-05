@@ -5,15 +5,27 @@ spring:
     user:
       name: register
       password: reg123!
+  cloud:
+    inetutils:
+      #排除的网卡
+      ignored-interfaces: eth0
+      #是否读取本地回环网络
+      use-only-site-local-interfaces: false
+      #倾向网络ip地址 可匹配正则 也可以匹配前缀
+      preferred-networks: 182.61.26.50
 server:
   port: 8761
 eureka:
   instance:
+    # 间隔多久时间没有发送心跳，认为服务不可用，秒
     lease-expiration-duration-in-seconds: 15
+    # 服务租约时间，秒
     lease-renewal-interval-in-seconds: 5
+    # 是否使用IP地址广播服务
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
     hostname: 127.0.0.1
+    ip-address: 182.61.26.50
   client:
     serviceUrl:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
