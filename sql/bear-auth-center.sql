@@ -13,8 +13,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for auth_client_details
 -- ----------------------------
-DROP TABLE IF EXISTS `auth_client_details`;
-CREATE TABLE `auth_client_details` (
+DROP TABLE IF EXISTS `oauth_client_details`;
+CREATE TABLE `oauth_client_details` (
   `client_id` varchar(128) NOT NULL,
   `resource_ids` varchar(256) DEFAULT NULL,
   `client_secret` varchar(256) DEFAULT NULL COMMENT '密码',
@@ -32,7 +32,7 @@ CREATE TABLE `auth_client_details` (
 -- ----------------------------
 -- Records of auth_client_details
 -- ----------------------------
-INSERT INTO `auth_client_details` VALUES ('system', null, '$2a$10$QN9vg9iX3WFovHnDX7bJO.rWWDkS0VP7HYhV.HDiVEE56xPwZfjKe', 'app', 'authorization_code,password,refresh_token', null, null, '28800', null, null, null);
+INSERT INTO `oauth_client_details` VALUES ('system', null, '$2a$10$QN9vg9iX3WFovHnDX7bJO.rWWDkS0VP7HYhV.HDiVEE56xPwZfjKe', 'app', 'authorization_code,password,refresh_token', null, null, '28800', null, null, null);
 
 -- ----------------------------
 -- Table structure for auth_code

@@ -19,13 +19,13 @@ spring:
           force-pull: true
           searchPaths: '{profile}'
 server:
-  port: 0
+  port: 8762
 eureka:
   instance:
     lease-expiration-duration-in-seconds: 15
     lease-renewal-interval-in-seconds: 5
     prefer-ip-address: true
-    instance-id: ${spring.application.name}:${random.int}
+    instance-id: ${spring.application.name}:${server.port}
     hostname: 127.0.0.1
   client:
     serviceUrl:

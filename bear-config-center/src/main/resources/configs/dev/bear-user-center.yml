@@ -65,6 +65,7 @@ security:
       prefer-token-info: false
 wechat:
   domain: http://api.gateway.com:8080/api-u
+  #http://api.gateway.com:8080/api-u
   infos:
     app1:
       appid: xxx

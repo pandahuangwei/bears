@@ -9,11 +9,8 @@ JAVA_OPTIONS_MAX=-Xmx256M
 JAVA_OPTS=" -Dprogram.name=$SERVER_NAME -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true "
 JAVA_JMX_OPTS=" -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false "
 
-#APP_NAME=${project.build.finalName}
-#MAIN_CLASS=${main_class}
-
-APP_NAME=bear-register-center
-MAIN_CLASS=com.bear.register.RegisterCenterApp
+APP_NAME=${project.build.finalName}
+MAIN_CLASS=${main_class}
 
 JAR_NAME=$APP_NAME\.jar
 #PID  代表是PID文件

@@ -56,3 +56,25 @@
 1、待完善
 
 ## 2019.04.04 增加注册中心的访问权限控制
+
+## 2019.04.05 随机端口修改为配置端口
+```yaml
+server:
+  port: 0
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.int}
+```
+```yaml
+server:
+  port: 8771
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+```
