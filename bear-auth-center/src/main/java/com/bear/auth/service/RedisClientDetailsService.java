@@ -59,7 +59,7 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
     /**
      * 缓存client并返回client
      *
-     * @param clientId
+     * @param clientId clientId
      */
     private ClientDetails cacheAndGetClient(String clientId) {
         // 从数据库读取
@@ -94,7 +94,7 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
     /**
      * 删除redis缓存
      *
-     * @param clientId
+     * @param clientId clientId
      */
     private void removeRedisCache(String clientId) {
         stringRedisTemplate.boundHashOps(CACHE_CLIENT_KEY).delete(clientId);

@@ -32,6 +32,7 @@ import java.util.Map;
 
 /**
  * 授权服务器配置
+ *
  * @author panda.
  * @version 1.0.
  * @since 2018-11-26 11:32.
@@ -67,6 +68,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private RedisClientDetailsService redisClientDetailsService;
     @Autowired
     public UserDetailsService userDetailsService;
+
     /**
      * 令牌存储
      */
@@ -104,8 +106,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * 通过参数access_token.add-userinfo控制<br>
      * 2018.07.13
      *
-     * @param accessToken
-     * @param authentication
+     * @param accessToken    accessToken
+     * @param authentication authentication
      */
     private void addLoginUserInfo(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
         if (!addUserInfo) {
@@ -142,8 +144,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * 我们将client信息存储到auth_client_details表里<br>
      * 并将数据缓存到redis
      *
-     * @param clients
-     * @throws Exception
+     * @param clients clients
+     * @throws Exception e
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
