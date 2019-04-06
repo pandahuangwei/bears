@@ -1,7 +1,7 @@
 package com.bear.admin.web;
 
-import com.bear.admin.entity.BlackIP;
-import com.bear.admin.service.BlackIPService;
+import com.bear.admin.entity.BlackIp;
+import com.bear.admin.service.BlackIpService;
 import com.bear.common.annotation.LogAnnotation;
 import com.bear.common.entity.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
  */
 
 @RestController
-public class BlackIPController {
+public class BlackIpController {
 
     @Autowired
-    private BlackIPService blackIPService;
+    private BlackIpService blackIPService;
 
     /**
      * 添加黑名单ip
@@ -33,7 +33,7 @@ public class BlackIPController {
     @LogAnnotation(module = "添加黑名单")
     @PreAuthorize("hasAuthority('ip:black:save')")
     @PostMapping("/blackIPs")
-    public void save(@RequestBody BlackIP blackIP) {
+    public void save(@RequestBody BlackIp blackIP) {
         blackIP.setCreateTime(new Date());
 
         blackIPService.save(blackIP);
@@ -58,7 +58,7 @@ public class BlackIPController {
      */
     @PreAuthorize("hasAuthority('ip:black:query')")
     @GetMapping("/blackIPs")
-    public Page<BlackIP> findBlackIPs(@RequestParam Map<String, Object> params) {
+    public Page<BlackIp> findBlackIPs(@RequestParam Map<String, Object> params) {
         return blackIPService.findBlackIPs(params);
     }
 
@@ -71,9 +71,9 @@ public class BlackIPController {
      */
     @GetMapping("/backend-anon/internal/blackIPs")
     public Set<String> findAllBlackIPs(@RequestParam Map<String, Object> params) {
-        Page<BlackIP> page = blackIPService.findBlackIPs(params);
+        Page<BlackIp> page = blackIPService.findBlackIPs(params);
         if (page.getTotal() > 0) {
-            return page.getData().stream().map(BlackIP::getIp).collect(Collectors.toSet());
+            return page.getData().stream().map(BlackIp::getIp).collect(Collectors.toSet());
         }
         return Collections.emptySet();
     }

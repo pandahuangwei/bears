@@ -1,8 +1,8 @@
 package com.bear.admin.service.impl;
 
-import com.bear.admin.entity.BlackIP;
-import com.bear.admin.mapper.BlackIPMapper;
-import com.bear.admin.service.BlackIPService;
+import com.bear.admin.entity.BlackIp;
+import com.bear.admin.mapper.BlackIpMapper;
+import com.bear.admin.service.BlackIpService;
 import com.bear.common.entity.Page;
 import com.bear.common.utils.PageUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -21,15 +21,15 @@ import java.util.Map;
  */
 @Slf4j
 @Service
-public class BlackIPServiceImpl implements BlackIPService {
+public class BlackIpServiceImpl implements BlackIpService {
 
     @Autowired
-    private BlackIPMapper blackIPMapper;
+    private BlackIpMapper blackIPMapper;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void save(BlackIP blackIP) {
-        BlackIP ip = blackIPMapper.findByIp(blackIP.getIp());
+    public void save(BlackIp blackIP) {
+        BlackIp ip = blackIPMapper.findByIp(blackIP.getIp());
         if (ip != null) {
             throw new IllegalArgumentException(blackIP.getIp() + "已存在");
         }
@@ -48,9 +48,9 @@ public class BlackIPServiceImpl implements BlackIPService {
     }
 
     @Override
-    public Page<BlackIP> findBlackIPs(Map<String, Object> params) {
+    public Page<BlackIp> findBlackIPs(Map<String, Object> params) {
         int total = blackIPMapper.count(params);
-        List<BlackIP> list = Collections.emptyList();
+        List<BlackIp> list = Collections.emptyList();
         if (total > 0) {
             PageUtil.pageParamConver(params, false);
 

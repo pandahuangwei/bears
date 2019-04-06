@@ -62,7 +62,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
     }
 
     private void handlerWechatLogin(LoginAppUser loginAppUser, String[] params) {
-        if (params.length < 3) {
+        int paramLength = 3;
+        if (params.length < paramLength) {
             throw new IllegalArgumentException("非法请求");
         }
 
@@ -83,7 +84,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
      * @param params p
      */
     private void handlerPhoneSmsLogin(LoginAppUser loginAppUser, String[] params) {
-        if (params.length < 5) {
+        int paramLength = 5;
+        if (params.length < paramLength) {
             throw new IllegalArgumentException("非法请求");
         }
 

@@ -41,7 +41,8 @@ public class ElasticSearchConfig {
         TransportClient client = new PreBuiltTransportClient(settings);
         try {
             // 读取的ip列表是以逗号分隔的
-            for (String clusterNode : this.clusterNodes.split(",")) {
+            String split = ",";
+            for (String clusterNode : this.clusterNodes.split(split)) {
                 String ip = clusterNode.split(":")[0];
                 String port = clusterNode.split(":")[1];
                 ((TransportClient) client)

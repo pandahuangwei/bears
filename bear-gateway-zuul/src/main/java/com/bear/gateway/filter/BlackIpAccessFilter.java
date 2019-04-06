@@ -25,7 +25,7 @@ import java.util.Set;
  * @since 2018-11-26 11:14.
  */
 @Component
-public class BlackIPAccessFilter extends ZuulFilter {
+public class BlackIpAccessFilter extends ZuulFilter {
     private static String UNKNOWN="unknown";
     @Autowired
     private BackendClient backendClient;

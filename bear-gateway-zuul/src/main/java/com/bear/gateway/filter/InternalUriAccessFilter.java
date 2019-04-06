@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2018-11-26 11:15.
  */
 @Component
-public class InternalURIAccessFilter extends ZuulFilter {
+public class InternalUriAccessFilter extends ZuulFilter {
 
     @Override
     public Object run() {

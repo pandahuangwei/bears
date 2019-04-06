@@ -123,7 +123,8 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         String value = stringRedisTemplate.opsForValue().get(key);
         if (value != null) {
             JSONObject json = JSONObject.parseObject(value);
-            if (code != null && code.equals(json.getString("code"))) {
+            String jsonCode = "code";
+            if (code != null && code.equals(json.getString(jsonCode))) {
                 log.info("验证码校验成功：{}", value);
 
                 if (delete == null || delete) {

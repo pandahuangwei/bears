@@ -30,7 +30,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.requestMatcher(new OAuth2RequestedMatcher()).authorizeRequests()
+        http.requestMatcher(new Oauth2RequestedMatcher()).authorizeRequests()
                 // 放开权限的url
                 .antMatchers(PermitAllUrl.permitAllUrl()).permitAll()
                 .anyRequest().authenticated();
@@ -40,7 +40,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
      * 判断来源请求是否包含oauth2授权信息<br>
      * url参数中含有access_token,或者header里有Authorization
      */
-    private static class OAuth2RequestedMatcher implements RequestMatcher {
+    private static class Oauth2RequestedMatcher implements RequestMatcher {
         @Override
         public boolean matches(HttpServletRequest request) {
             // 请求参数中包含access_token参数

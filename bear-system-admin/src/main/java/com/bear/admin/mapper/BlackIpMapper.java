@@ -1,6 +1,6 @@
 package com.bear.admin.mapper;
 
-import com.bear.admin.entity.BlackIP;
+import com.bear.admin.entity.BlackIp;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,7 +15,7 @@ import java.util.Map;
  * @since 2019-02-26 15:40.
  */
 @Mapper
-public interface BlackIPMapper {
+public interface BlackIpMapper {
     /**
      * 保存黑名单ip
      *
@@ -23,7 +23,7 @@ public interface BlackIPMapper {
      * @return int
      */
     @Insert("insert into black_ip(ip, createTime) values(#{ip}, #{createTime})")
-    int save(BlackIP ip);
+    int save(BlackIp ip);
 
     /**
      * 删除ip
@@ -41,7 +41,7 @@ public interface BlackIPMapper {
      * @return Ip
      */
     @Select("select * from black_ip t where t.ip = #{ip}")
-    BlackIP findByIp(String ip);
+    BlackIp findByIp(String ip);
 
     /**
      * 计数
@@ -57,5 +57,5 @@ public interface BlackIPMapper {
      * @param params param
      * @return list
      */
-    List<BlackIP> findData(Map<String, Object> params);
+    List<BlackIp> findData(Map<String, Object> params);
 }

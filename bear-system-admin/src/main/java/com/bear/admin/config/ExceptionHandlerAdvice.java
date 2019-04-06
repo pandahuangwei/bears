@@ -32,7 +32,8 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler({ FeignException.class })
     public Map<String, Object> feignException(FeignException exception, HttpServletResponse response) {
         int httpStatus = exception.status();
-        if (httpStatus >= 500) {
+        int status = 500;
+        if (httpStatus >= status) {
             log.error("feignClient调用异常", exception);
         }
 

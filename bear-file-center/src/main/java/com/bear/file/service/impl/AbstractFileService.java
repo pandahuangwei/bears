@@ -31,8 +31,8 @@ public abstract class AbstractFileService implements FileService {
         if (oldFileInfo != null) {
             return oldFileInfo;
         }
-
-        if (!fileInfo.getName().contains(".")) {
+        String fileSplit=".";
+        if (!fileInfo.getName().contains(fileSplit)) {
             throw new IllegalArgumentException("缺少后缀名");
         }
 

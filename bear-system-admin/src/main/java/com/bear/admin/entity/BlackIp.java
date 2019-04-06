@@ -11,7 +11,7 @@ import java.util.Date;
  * @since 2019-02-26 15:39.
  */
 @Data
-public class BlackIP implements Serializable {
+public class BlackIp implements Serializable {
 
     private static final long serialVersionUID = -20L;
 

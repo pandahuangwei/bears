@@ -96,7 +96,8 @@ public class EsLogServiceImpl implements LogService, ApplicationContextAware {
             String flag = MapUtils.getString(params, "flag");
             if (StringUtils.isNoneBlank(flag)) {
                 Boolean bool = Boolean.FALSE;
-                if ("1".equals(flag) || "true".equalsIgnoreCase(flag)) {
+                String flagOne = "1",flagTrue="true";
+                if (flagOne.equals(flag) || flagTrue.equalsIgnoreCase(flag)) {
                     bool = Boolean.TRUE;
                 }
                 queryBuilder.must(QueryBuilders.matchQuery("flag", bool));

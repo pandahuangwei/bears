@@ -1,6 +1,6 @@
 package com.bear.admin.service;
 
-import com.bear.admin.entity.BlackIP;
+import com.bear.admin.entity.BlackIp;
 import com.bear.common.entity.Page;
 
 import java.util.Map;
@@ -10,13 +10,13 @@ import java.util.Map;
  * @version 1.0.
  * @since 2019-02-26 15:51.
  */
-public interface BlackIPService {
+public interface BlackIpService {
     /**
      * 保存ip黑名单
      *
      * @param ip ip
      */
-    void save(BlackIP ip);
+    void save(BlackIp ip);
 
     /**
      * 删除黑名单id
@@ -31,6 +31,6 @@ public interface BlackIPService {
      * @param params params
      * @return page
      */
-    Page<BlackIP> findBlackIPs(Map<String, Object> params);
+    Page<BlackIp> findBlackIPs(Map<String, Object> params);
 
 }

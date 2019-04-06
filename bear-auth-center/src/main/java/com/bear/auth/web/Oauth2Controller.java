@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping
-public class OAuth2Controller {
+public class Oauth2Controller {
 
     @Autowired
     private ConsumerTokenServices tokenServices;

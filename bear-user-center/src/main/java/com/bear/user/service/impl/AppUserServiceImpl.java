@@ -56,11 +56,12 @@ public class AppUserServiceImpl implements AppUserService {
         }
 
         // 防止用邮箱直接当用户名，邮箱也要发送验证（暂未开发）
-        if (username.contains("@")) {
+        String emailSplit = "@";
+        if (username.contains(emailSplit)) {
             throw new IllegalArgumentException("用户名不能包含@");
         }
-
-        if (username.contains("|")) {
+        String lineSplit = "|";
+        if (username.contains(lineSplit)) {
             throw new IllegalArgumentException("用户名不能包含|字符");
         }
 

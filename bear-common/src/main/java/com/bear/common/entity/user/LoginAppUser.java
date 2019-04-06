@@ -32,11 +32,12 @@ public class LoginAppUser extends AppUser implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collection = new HashSet<>();
         if (!CollectionUtils.isEmpty(roles)) {
+            String startStr = "ROLE_";
             roles.forEach(role -> {
-                if (role.getCode().startsWith("ROLE_")) {
+                if (role.getCode().startsWith(startStr)) {
                     collection.add(new SimpleGrantedAuthority(role.getCode()));
                 } else {
-                    collection.add(new SimpleGrantedAuthority("ROLE_" + role.getCode()));
+                    collection.add(new SimpleGrantedAuthority(startStr + role.getCode()));
                 }
             });
         }

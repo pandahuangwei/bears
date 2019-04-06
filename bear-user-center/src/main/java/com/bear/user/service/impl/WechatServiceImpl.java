@@ -218,8 +218,9 @@ public class WechatServiceImpl implements WechatService {
     @Override
     public String getToUrl(String toUrl, WechatUser wechatUserInfo) {
         StringBuilder builder = new StringBuilder(toUrl);
-        if (!toUrl.contains("?")) {
-            builder.append("?");
+        String flag ="?" ;
+        if (!toUrl.contains(flag)) {
+            builder.append(flag);
         }
 
         if (wechatUserInfo.getUserId() != null) {
