@@ -11,11 +11,26 @@ import java.util.Map;
  * @since 2019-02-26 15:51.
  */
 public interface BlackIPService {
+    /**
+     * 保存ip黑名单
+     *
+     * @param ip ip
+     */
+    void save(BlackIP ip);
 
-    void save(BlackIP blackIP);
-
+    /**
+     * 删除黑名单id
+     *
+     * @param ip ip
+     */
     void delete(String ip);
 
+    /**
+     * 分页列表
+     *
+     * @param params params
+     * @return page
+     */
     Page<BlackIP> findBlackIPs(Map<String, Object> params);
 
 }

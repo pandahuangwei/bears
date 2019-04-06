@@ -14,7 +14,12 @@ import java.util.Set;
  */
 @FeignClient("bear-system-admin")
 public interface BackendClient {
-
+    /**
+     * 获取所有黑名单ip
+     *
+     * @param params params
+     * @return set
+     */
     @GetMapping("/backend-anon/internal/blackIPs")
     Set<String> findAllBlackIPs(@RequestParam("params") Map<String, Object> params);
 }

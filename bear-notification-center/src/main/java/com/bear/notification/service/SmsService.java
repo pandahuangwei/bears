@@ -11,16 +11,42 @@ import java.util.Map;
  * @since 2018-11-26 0:47.
  */
 public interface SmsService {
+    /**
+     * 保存短信
+     *
+     * @param sms    sms
+     * @param params params
+     */
     void save(Sms sms, Map<String, String> params);
 
+    /**
+     * 更新短信
+     *
+     * @param sms sms
+     */
     void update(Sms sms);
 
+    /**
+     * 获取短信
+     *
+     * @param id id
+     * @return Sms
+     */
     Sms findById(Long id);
 
+    /**
+     * 分页获取短信信息
+     *
+     * @param params params
+     * @return Sms
+     */
     Page<Sms> findSms(Map<String, Object> params);
 
     /**
      * 发送短信
+     *
+     * @param sms sms
+     * @return SendSmsResponse
      */
     SendSmsResponse sendSmsMsg(Sms sms);
 }

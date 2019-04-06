@@ -30,7 +30,7 @@ public interface Oauth2Client {
      * 删除access_token和refresh_token<br>
      * 认证中心的OAuth2Controller方法removeToken
      *
-     * @param access_token
+     * @param accessToken accessToken
      */
     @DeleteMapping(path = "/remove_token")
     void removeToken(@RequestParam("access_token") String accessToken);

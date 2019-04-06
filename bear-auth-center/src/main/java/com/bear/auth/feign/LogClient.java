@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 @FeignClient("bear-log-center")
 public interface LogClient {
-
+    /**
+     * 保存日志
+     *
+     * @param log log
+     */
     @PostMapping("/logs-anon/internal")
     void save(@RequestBody Log log);
 }

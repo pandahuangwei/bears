@@ -31,7 +31,7 @@ public class ElasticSearchConfig {
     /**
      * 使用elasticsearch实现类时才触发
      *
-     * @return
+     * @return TransportClient
      */
     @Bean
     @ConditionalOnBean(value = EsLogServiceImpl.class)

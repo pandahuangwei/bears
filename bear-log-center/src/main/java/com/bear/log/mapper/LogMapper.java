@@ -13,11 +13,28 @@ import java.util.Map;
  */
 @Mapper
 public interface LogMapper {
-
+    /**
+     * 保存日志
+     *
+     * @param log log
+     * @return int
+     */
     @Insert("insert into t_log(username, module, params, remark, flag, createTime) values(#{username}, #{module}, #{params}, #{remark}, #{flag}, #{createTime})")
     int save(Log log);
 
+    /**
+     * 日志计数
+     *
+     * @param params params
+     * @return int
+     */
     int count(Map<String, Object> params);
 
+    /**
+     * 获取日志列表
+     *
+     * @param params params
+     * @return list
+     */
     List<Log> findData(Map<String, Object> params);
 }

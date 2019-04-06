@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 public abstract class AbstractFileService implements FileService {
     /**
+     * 获取文件
      *
      * @return FileMapper
      */
@@ -56,8 +57,9 @@ public abstract class AbstractFileService implements FileService {
     /**
      * 上传文件
      *
-     * @param file f
-     * @param fileInfo fi
+     * @param file     file
+     * @param fileInfo fileInfo
+     * @throws Exception e
      */
     protected abstract void uploadFile(MultipartFile file, FileInfo fileInfo) throws Exception;
 
@@ -71,7 +73,7 @@ public abstract class AbstractFileService implements FileService {
     /**
      * 删除文件资源
      *
-     * @param fileInfo  fileInfo
+     * @param fileInfo fileInfo
      * @return boolean
      */
     protected abstract boolean deleteFile(FileInfo fileInfo);

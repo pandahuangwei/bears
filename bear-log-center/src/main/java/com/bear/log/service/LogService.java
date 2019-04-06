@@ -17,5 +17,11 @@ public interface LogService {
      */
     void save(Log log);
 
+    /**
+     * 分页获取日志
+     *
+     * @param params param
+     * @return page
+     */
     Page<Log> findLogs(Map<String, Object> params);
 }

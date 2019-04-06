@@ -12,10 +12,21 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @FeignClient("bear-user-center")
 public interface UserClient {
-
+    /**
+     * 根据用户名获取登录用户信息
+     *
+     * @param username username
+     * @return LoginAppUser
+     */
     @GetMapping(value = "/users-anon/internal", params = "username")
     LoginAppUser findByUsername(@RequestParam("username") String username);
 
+    /**
+     * 登录校验
+     *
+     * @param tempCode tempCode
+     * @param openid   openid
+     */
     @GetMapping("/wechat/login-check")
     void wechatLoginCheck(@RequestParam("tempCode") String tempCode, @RequestParam("openid") String openid);
 }
