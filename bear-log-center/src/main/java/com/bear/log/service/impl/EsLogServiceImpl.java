@@ -39,7 +39,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:20.
  */
 public class EsLogServiceImpl implements LogService, ApplicationContextAware {

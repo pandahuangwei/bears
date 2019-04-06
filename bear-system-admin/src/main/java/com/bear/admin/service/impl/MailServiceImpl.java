@@ -40,7 +40,7 @@ public class MailServiceImpl implements MailService {
      *
      * @param mail
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveMail(Mail mail) {
         if (mail.getUserId() == null || StringUtils.isBlank(mail.getUsername())) {
@@ -70,7 +70,7 @@ public class MailServiceImpl implements MailService {
      *
      * @param mail
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void updateMail(Mail mail) {
         Mail oldMail = mailMapper.findById(mail.getId());

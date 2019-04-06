@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:58.
  */
 @Configuration

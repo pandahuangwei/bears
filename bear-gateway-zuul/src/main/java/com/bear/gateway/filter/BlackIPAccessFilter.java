@@ -44,8 +44,8 @@ public class BlackIPAccessFilter extends ZuulFilter {
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
         String ip = getIpAddress(request);
-
-        return blackIPs.contains(ip);// 判断ip是否在黑名单列表里
+        // 判断ip是否在黑名单列表里
+        return blackIPs.contains(ip);
     }
 
     @Override

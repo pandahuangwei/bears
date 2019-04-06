@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * rabbitmq配置.
  *
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:24.
  */
 @Configuration

@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:45.
  */
 @Data

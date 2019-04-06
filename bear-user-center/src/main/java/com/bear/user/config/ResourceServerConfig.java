@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:58.
  */
 @EnableResourceServer

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 消费日志。
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:27.
  */
 @Component

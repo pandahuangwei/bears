@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 资源服务配置.
  *
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:25.
  */
 @EnableResourceServer
@@ -25,7 +25,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.csrf().disable().exceptionHandling()
                 .authenticationEntryPoint(
                         (request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and().authorizeRequests().antMatchers(PermitAllUrl.permitAllUrl("/logs-anon/**")).permitAll() // 放开权限的url
+                // 放开权限的url
+                .and().authorizeRequests().antMatchers(PermitAllUrl.permitAllUrl("/logs-anon/**")).permitAll()
                 .anyRequest().authenticated().and().httpBasic();
     }
 

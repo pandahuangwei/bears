@@ -24,7 +24,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 1:08.
  */
 @Slf4j
@@ -42,7 +42,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Autowired
     private UserCredentialsMapper userCredentialsMapper;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void addAppUser(AppUser appUser) {
         String username = appUser.getUsername();
@@ -50,11 +50,13 @@ public class AppUserServiceImpl implements AppUserService {
             throw new IllegalArgumentException("用户名不能为空");
         }
 
-        if (PhoneUtil.checkPhone(username)) {// 防止用手机号直接当用户名，手机号要发短信验证
+        // 防止用手机号直接当用户名，手机号要发短信验证
+        if (PhoneUtil.checkPhone(username)) {
             throw new IllegalArgumentException("用户名要包含英文字符");
         }
 
-        if (username.contains("@")) {// 防止用邮箱直接当用户名，邮箱也要发送验证（暂未开发）
+        // 防止用邮箱直接当用户名，邮箱也要发送验证（暂未开发）
+        if (username.contains("@")) {
             throw new IllegalArgumentException("用户名不能包含@");
         }
 
@@ -78,8 +80,8 @@ public class AppUserServiceImpl implements AppUserService {
         if (userCredential != null) {
             throw new IllegalArgumentException("用户名已存在");
         }
-
-        appUser.setPassword(passwordEncoder.encode(appUser.getPassword())); // 加密密码
+        // 加密密码
+        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
         appUser.setEnabled(Boolean.TRUE);
         appUser.setCreateTime(new Date());
         appUser.setUpdateTime(appUser.getCreateTime());
@@ -90,7 +92,7 @@ public class AppUserServiceImpl implements AppUserService {
         log.info("添加用户：{}", appUser);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void updateAppUser(AppUser appUser) {
         appUser.setUpdateTime(new Date());
@@ -99,7 +101,7 @@ public class AppUserServiceImpl implements AppUserService {
         log.info("修改用户：{}", appUser);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public LoginAppUser findByUsername(String username) {
         AppUser appUser = userCredentialsMapper.findUserByUsername(username);
@@ -108,7 +110,8 @@ public class AppUserServiceImpl implements AppUserService {
             BeanUtils.copyProperties(appUser, loginAppUser);
 
             Set<Role> sysRoles = userRoleMapper.findRolesByUserId(appUser.getId());
-            loginAppUser.setRoles(sysRoles);// 设置角色
+            // 设置角色
+            loginAppUser.setRoles(sysRoles);
 
             if (!CollectionUtils.isEmpty(sysRoles)) {
                 Set<Long> roleIds = sysRoles.parallelStream().map(Role::getId).collect(Collectors.toSet());
@@ -116,8 +119,8 @@ public class AppUserServiceImpl implements AppUserService {
                 if (!CollectionUtils.isEmpty(sysPermissions)) {
                     Set<String> permissions = sysPermissions.parallelStream().map(Permission::getPermission)
                             .collect(Collectors.toSet());
-
-                    loginAppUser.setPermissions(permissions);// 设置权限集合
+// 设置权限集合
+                    loginAppUser.setPermissions(permissions);
                 }
 
             }
@@ -137,7 +140,7 @@ public class AppUserServiceImpl implements AppUserService {
      * 给用户设置角色<br>
      * 这里采用先删除老角色，再插入新角色
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void setRoleToUser(Long id, Set<Long> roleIds) {
         AppUser appUser = appUserMapper.findById(id);
@@ -162,19 +165,21 @@ public class AppUserServiceImpl implements AppUserService {
      * @param oldPassword
      * @param newPassword
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void updatePassword(Long id, String oldPassword, String newPassword) {
         AppUser appUser = appUserMapper.findById(id);
         if (StringUtils.isNoneBlank(oldPassword)) {
-            if (!passwordEncoder.matches(oldPassword, appUser.getPassword())) { // 旧密码校验
+            // 旧密码校验
+            if (!passwordEncoder.matches(oldPassword, appUser.getPassword())) {
                 throw new IllegalArgumentException("旧密码错误");
             }
         }
 
         AppUser user = new AppUser();
         user.setId(id);
-        user.setPassword(passwordEncoder.encode(newPassword)); // 加密密码
+        // 加密密码
+        user.setPassword(passwordEncoder.encode(newPassword));
 
         updateAppUser(user);
         log.info("修改密码：{}", user);
@@ -200,7 +205,7 @@ public class AppUserServiceImpl implements AppUserService {
     /**
      * 绑定手机号
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void bindingPhone(Long userId, String phone) {
         UserCredential userCredential = userCredentialsMapper.findByUsername(phone);

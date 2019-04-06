@@ -119,9 +119,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             Object principal = userAuthentication.getPrincipal();
             if (principal instanceof LoginAppUser) {
                 LoginAppUser loginUser = (LoginAppUser) principal;
-
-                Map<String, Object> map = new HashMap<>(defaultOAuth2AccessToken.getAdditionalInformation()); // 旧的附加参数
-                map.put("loginUser", loginUser); // 追加当前登陆用户
+                // 旧的附加参数
+                Map<String, Object> map = new HashMap<>(defaultOAuth2AccessToken.getAdditionalInformation());
+                // 追加当前登陆用户
+                map.put("loginUser", loginUser);
 
                 defaultOAuth2AccessToken.setAdditionalInformation(map);
             }
@@ -130,7 +131,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.allowFormAuthenticationForClients(); // 允许表单形式的认证
+        // 允许表单形式的认证
+        security.allowFormAuthenticationForClients();
     }
 
 //    @Autowired
@@ -174,7 +176,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             @Override
             public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
                 OAuth2AccessToken oAuth2AccessToken = super.enhance(accessToken, authentication);
-                addLoginUserInfo(oAuth2AccessToken, authentication); // 2018.07.13 将当前用户信息追加到登陆后返回数据里
+                // 2018.07.13 将当前用户信息追加到登陆后返回数据里
+                addLoginUserInfo(oAuth2AccessToken, authentication);
                 return oAuth2AccessToken;
             }
         };

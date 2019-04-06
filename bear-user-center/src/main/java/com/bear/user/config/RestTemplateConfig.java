@@ -11,7 +11,7 @@ import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:59.
  */
 @Configuration

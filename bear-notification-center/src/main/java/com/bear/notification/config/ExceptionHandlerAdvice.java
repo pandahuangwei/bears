@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:44.
  */
 @RestControllerAdvice
@@ -18,7 +18,7 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler({ IllegalArgumentException.class })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, Object> badRequestException(IllegalArgumentException exception) {
-        Map<String, Object> data = new HashMap<>();
+        Map<String, Object> data = new HashMap<>(8);
         data.put("code", HttpStatus.BAD_REQUEST.value());
         data.put("message", exception.getMessage());
 

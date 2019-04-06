@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:45.
  */
 @Data

@@ -34,7 +34,8 @@ public class PageUtil {
      *            分页参数是否是必填
      */
     public static void pageParamConver(Map<String, Object> params, boolean required) {
-        if (required) {// 分页参数必填时，校验参数
+        if (required) {
+            // 分页参数必填时，校验参数
             if (params == null || !params.containsKey(START) || !params.containsKey(LENGTH)) {
                 throw new IllegalArgumentException("请检查分页参数," + START + "," + LENGTH);
             }

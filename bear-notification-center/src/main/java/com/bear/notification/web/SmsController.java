@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:52.
  */
 @RestController

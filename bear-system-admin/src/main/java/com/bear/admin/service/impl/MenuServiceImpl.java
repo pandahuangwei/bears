@@ -28,7 +28,7 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private RoleMenuMapper roleMenuMapper;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(Menu menu) {
         menu.setCreateTime(new Date());
@@ -38,7 +38,7 @@ public class MenuServiceImpl implements MenuService {
         log.info("新增菜单：{}", menu);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void update(Menu menu) {
         menu.setUpdateTime(new Date());
@@ -47,7 +47,7 @@ public class MenuServiceImpl implements MenuService {
         log.info("修改菜单：{}", menu);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void delete(Long id) {
         Menu menu = menuMapper.findById(id);
@@ -66,7 +66,7 @@ public class MenuServiceImpl implements MenuService {
      * @param roleId
      * @param menuIds
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void setMenuToRole(Long roleId, Set<Long> menuIds) {
         roleMenuMapper.delete(roleId, null);

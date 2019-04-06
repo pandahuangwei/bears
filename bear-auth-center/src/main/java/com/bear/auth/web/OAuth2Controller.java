@@ -50,11 +50,11 @@ public class OAuth2Controller {
      * 移除access_token和refresh_token<br>
      * 2018.06.28 改为用ConsumerTokenServices，该接口的实现类DefaultTokenServices已有相关实现，我们不再重复造轮子
      *
-     * @param access_token
+     * @param accessToken token
      */
     @DeleteMapping(value = "/remove_token", params = "access_token")
-    public void removeToken(String access_token) {
-        boolean flag = tokenServices.revokeToken(access_token);
+    public void removeToken(String accessToken) {
+        boolean flag = tokenServices.revokeToken(accessToken);
         if (flag) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             saveLogoutLog(authentication.getName());

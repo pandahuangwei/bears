@@ -5,7 +5,18 @@ package com.bear.common.constants;
  * @since 2018-11-25
  */
 public enum MailStatusEnum {
-    DRAFT(0, "草稿"), SUCCESS(1, "发送成功"), ERROR(2, "发送失败");
+    /**
+     * 0,草稿
+     */
+    DRAFT(0, "草稿"),
+    /**
+     * 1,发送成功
+     */
+    SUCCESS(1, "发送成功"),
+    /**
+     * 2,发送失败
+     */
+    ERROR(2, "发送失败");
 
     private int code;
     private String desc;

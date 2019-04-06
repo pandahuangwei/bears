@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 1:17.
  */
 @FeignClient("bear-notification-center")

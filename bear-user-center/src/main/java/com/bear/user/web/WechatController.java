@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 1:19.
  */
 @Slf4j

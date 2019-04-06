@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 1:01.
  */
 @Mapper

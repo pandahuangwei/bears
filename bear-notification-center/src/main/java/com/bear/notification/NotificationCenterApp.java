@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:53.
  */
 @EnableDiscoveryClient

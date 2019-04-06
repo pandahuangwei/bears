@@ -62,9 +62,9 @@ public class FileController {
             throws Exception {
         FileInfo fileInfo = upload(file, fileSource);
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(8);
         map.put("code", 0);
-        Map<String, Object> data = new HashMap<>();
+        Map<String, Object> data = new HashMap<>(8);
         data.put("src", fileInfo.getUrl());
         map.put("data", data);
 

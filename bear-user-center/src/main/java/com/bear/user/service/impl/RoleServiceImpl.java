@@ -21,7 +21,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 1:13.
  */
 @Slf4j
@@ -37,7 +37,7 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(Role sysRole) {
         Role role = roleMapper.findByCode(sysRole.getCode());
@@ -52,7 +52,7 @@ public class RoleServiceImpl implements RoleService {
         log.info("保存角色：{}", sysRole);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void update(Role sysRole) {
         sysRole.setUpdateTime(new Date());
@@ -61,7 +61,7 @@ public class RoleServiceImpl implements RoleService {
         log.info("修改角色：{}", sysRole);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void deleteRole(Long id) {
         Role sysRole = roleMapper.findById(id);
@@ -82,7 +82,7 @@ public class RoleServiceImpl implements RoleService {
      * @param roleId
      * @param permissionIds
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void setPermissionToRole(Long roleId, Set<Long> permissionIds) {
         Role sysRole = roleMapper.findById(roleId);

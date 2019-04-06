@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.Set;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 1:05.
  */
 @Mapper

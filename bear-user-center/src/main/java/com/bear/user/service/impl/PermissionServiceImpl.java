@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 1:12.
  */
 @Slf4j
@@ -30,7 +30,7 @@ public class PermissionServiceImpl implements PermissionService {
         return rolePermissionMapper.findPermissionsByRoleIds(roleIds);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(Permission sysPermission) {
         Permission permission = permissionMapper.findByPermission(sysPermission.getPermission());
@@ -44,7 +44,7 @@ public class PermissionServiceImpl implements PermissionService {
         log.info("保存权限标识：{}", sysPermission);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void update(Permission sysPermission) {
         sysPermission.setUpdateTime(new Date());
@@ -52,7 +52,7 @@ public class PermissionServiceImpl implements PermissionService {
         log.info("修改权限标识：{}", sysPermission);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void delete(Long id) {
         Permission permission = permissionMapper.findById(id);

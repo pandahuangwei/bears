@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 1:04.
  */
 @Mapper

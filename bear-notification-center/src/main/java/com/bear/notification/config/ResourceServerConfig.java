@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:44.
  */
 @EnableResourceServer
@@ -23,7 +23,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.csrf().disable().exceptionHandling()
                 .authenticationEntryPoint(
                         (request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and().authorizeRequests().antMatchers(PermitAllUrl.permitAllUrl("/notification-anon/**")).permitAll() // 放开权限的url
+                // 放开权限的url
+                .and().authorizeRequests().antMatchers(PermitAllUrl.permitAllUrl("/notification-anon/**")).permitAll()
                 .anyRequest().authenticated().and().httpBasic();
     }
 

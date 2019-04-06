@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:57.
  */
 @EnableAsync(proxyTargetClass = true)

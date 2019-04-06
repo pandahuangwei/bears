@@ -6,7 +6,7 @@ import com.bear.common.entity.log.Log;
 import java.util.Map;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:18.
  */
 public interface LogService {

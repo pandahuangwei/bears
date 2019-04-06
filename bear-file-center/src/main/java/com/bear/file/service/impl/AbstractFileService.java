@@ -15,7 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Slf4j
 public abstract class AbstractFileService implements FileService {
-
+    /**
+     *
+     * @return FileMapper
+     */
     protected abstract FileMapper getFileMapper();
 
     @Override
@@ -23,8 +26,8 @@ public abstract class AbstractFileService implements FileService {
         FileInfo fileInfo = FileUtil.getFileInfo(file);
         // 先根据文件md5查询记录
         FileInfo oldFileInfo = getFileMapper().getById(fileInfo.getId());
-
-        if (oldFileInfo != null) {// 如果已存在文件，避免重复上传同一个文件
+        // 如果已存在文件，避免重复上传同一个文件
+        if (oldFileInfo != null) {
             return oldFileInfo;
         }
 
@@ -33,9 +36,10 @@ public abstract class AbstractFileService implements FileService {
         }
 
         uploadFile(file, fileInfo);
-
-        fileInfo.setSource(fileSource().name());// 设置文件来源
-        getFileMapper().save(fileInfo);// 将文件信息保存到数据库
+        // 设置文件来源
+        fileInfo.setSource(fileSource().name());
+        // 将文件信息保存到数据库
+        getFileMapper().save(fileInfo);
 
         log.info("上传文件：{}", fileInfo);
 
@@ -52,8 +56,8 @@ public abstract class AbstractFileService implements FileService {
     /**
      * 上传文件
      *
-     * @param file
-     * @param fileInfo
+     * @param file f
+     * @param fileInfo fi
      */
     protected abstract void uploadFile(MultipartFile file, FileInfo fileInfo) throws Exception;
 
@@ -67,8 +71,8 @@ public abstract class AbstractFileService implements FileService {
     /**
      * 删除文件资源
      *
-     * @param fileInfo
-     * @return
+     * @param fileInfo  fileInfo
+     * @return boolean
      */
     protected abstract boolean deleteFile(FileInfo fileInfo);
 }

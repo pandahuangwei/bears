@@ -24,7 +24,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * aop实现日志
  *
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:33.
  */
 @Aspect
@@ -49,13 +49,13 @@ public class LogAop {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         LogAnnotation logAnnotation = methodSignature.getMethod().getDeclaredAnnotation(LogAnnotation.class);
         log.setModule(logAnnotation.module());
-
-        if (logAnnotation.recordParam()) { // 是否要记录方法的参数数据
-            String[] paramNames = methodSignature.getParameterNames();// 参数名
+        // 是否要记录方法的参数数据
+        if (logAnnotation.recordParam()) {
+            String[] paramNames = methodSignature.getParameterNames();
             if (paramNames != null && paramNames.length > 0) {
-                Object[] args = joinPoint.getArgs();// 参数值
+                Object[] args = joinPoint.getArgs();
 
-                Map<String, Object> params = new HashMap<>();
+                Map<String, Object> params = new HashMap<>(8);
                 for (int i = 0; i < paramNames.length; i++) {
                     Object value = args[i];
                     if (value instanceof Serializable) {
@@ -64,7 +64,8 @@ public class LogAop {
                 }
 
                 try {
-                    log.setParams(JSONObject.toJSONString(params)); // 以json的形式记录参数
+                    // 以json的形式记录参数
+                    log.setParams(JSONObject.toJSONString(params));
                 } catch (Exception e) {
                     logger.error("记录参数失败：{}", e.getMessage());
                 }
@@ -72,13 +73,16 @@ public class LogAop {
         }
 
         try {
-            Object object = joinPoint.proceed();// 执行原方法
+            // 执行原方法
+            Object object = joinPoint.proceed();
             log.setFlag(Boolean.TRUE);
 
             return object;
-        } catch (Exception e) { // 方法执行失败
+        } catch (Exception e) {
+            // 方法执行失败
             log.setFlag(Boolean.FALSE);
-            log.setRemark(e.getMessage()); // 备注记录失败原因
+            // 备注记录失败原因
+            log.setRemark(e.getMessage());
             throw e;
         } finally {
             // 异步将Log对象发送到队列

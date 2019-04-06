@@ -30,7 +30,7 @@ public class ServiceInstanceController {
      */
     @GetMapping
     public Map<String, Object> map() {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(8);
         List<String> services = discoveryClient.getServices();
         services.forEach(serviceId -> {
             List<ServiceInstance> instances = discoveryClient.getInstances(serviceId);

@@ -10,7 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * 监控中心.
  *
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:39.
  */
 @EnableAdminServer

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 1:20.
  */
 @RestController

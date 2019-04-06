@@ -7,7 +7,7 @@ import com.bear.notification.entity.Sms;
 import java.util.Map;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:47.
  */
 public interface SmsService {

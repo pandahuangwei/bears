@@ -16,7 +16,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:17.
  */
 @Getter

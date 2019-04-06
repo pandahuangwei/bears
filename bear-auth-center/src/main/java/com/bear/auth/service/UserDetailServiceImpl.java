@@ -36,7 +36,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 为了支持多类型登录，这里username后面拼装上登录类型,如username|type
         String[] params = username.split("\\|");
-        username = params[0];// 真正的用户名
+        // 真正的用户名
+        username = params[0];
 
         LoginAppUser loginAppUser = userClient.findByUsername(username);
         if (loginAppUser == null) {
@@ -48,9 +49,11 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (params.length > 1) {
             // 登录类型
             CredentialType credentialType = CredentialType.valueOf(params[1]);
-            if (CredentialType.PHONE == credentialType) {// 短信登录
+            if (CredentialType.PHONE == credentialType) {
+                // 短信登录
                 handlerPhoneSmsLogin(loginAppUser, params);
-            } else if (CredentialType.WECHAT_OPENID == credentialType) {// 微信登陆
+            } else if (CredentialType.WECHAT_OPENID == credentialType) {
+                // 微信登陆
                 handlerWechatLogin(loginAppUser, params);
             }
         }
@@ -76,8 +79,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
     /**
      * 手机号+短信验证码登陆，处理逻辑
      *
-     * @param loginAppUser
-     * @param params
+     * @param loginAppUser user
+     * @param params p
      */
     private void handlerPhoneSmsLogin(LoginAppUser loginAppUser, String[] params) {
         if (params.length < 5) {

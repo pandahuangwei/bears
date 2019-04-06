@@ -20,7 +20,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:49.
  */
 @Slf4j
@@ -37,7 +37,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     @Autowired
     private SmsService smsService;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public VerificationCode generateCode(String phone) {
         String uuid = UUID.randomUUID().toString();
@@ -70,7 +70,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         Sms sms = new Sms();
         sms.setPhone(phone);
 
-        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<>(4);
         params.put("code", code);
         smsService.save(sms, params);
 
@@ -130,7 +130,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
                     stringRedisTemplate.delete(key);
                 }
 
-                if (delete == Boolean.FALSE && second != null && second > 0) {
+                if (delete.equals(Boolean.FALSE) && second != null && second > 0) {
                     stringRedisTemplate.expire(key, second, TimeUnit.SECONDS);
                 }
 

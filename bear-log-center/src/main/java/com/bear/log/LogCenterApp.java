@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * 日志中心.
  *
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:30.
  */
 @EnableDiscoveryClient

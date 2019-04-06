@@ -49,7 +49,7 @@ public class TokenController {
     @PostMapping("/sys/login")
     public Map<String, Object> login(String username, String password) {
         log.info("username：{}",username);
-        Map<String, String> parameters = new HashMap<>();
+        Map<String, String> parameters = new HashMap<>(8);
         parameters.put(OAuth2Utils.GRANT_TYPE, "password");
         parameters.put(OAuth2Utils.CLIENT_ID, CommonConstants.CLIENT_ID);
         parameters.put("client_secret", CommonConstants.CLIENT_SECRET);
@@ -79,7 +79,7 @@ public class TokenController {
      */
     @PostMapping("/sys/login-sms")
     public Map<String, Object> smsLogin(String phone, String key, String code) {
-        Map<String, String> parameters = new HashMap<>();
+        Map<String, String> parameters = new HashMap<>(8);
         parameters.put(OAuth2Utils.GRANT_TYPE, "password");
         parameters.put(OAuth2Utils.CLIENT_ID, CommonConstants.CLIENT_ID);
         parameters.put("client_secret", CommonConstants.CLIENT_SECRET);
@@ -103,7 +103,7 @@ public class TokenController {
      */
     @PostMapping("/sys/login-wechat")
     public Map<String, Object> smsLogin(String openid, String tempCode) {
-        Map<String, String> parameters = new HashMap<>();
+        Map<String, String> parameters = new HashMap<>(8);
         parameters.put(OAuth2Utils.GRANT_TYPE, "password");
         parameters.put(OAuth2Utils.CLIENT_ID, CommonConstants.CLIENT_ID);
         parameters.put("client_secret", CommonConstants.CLIENT_SECRET);
@@ -143,17 +143,17 @@ public class TokenController {
     /**
      * 系统刷新refresh_token
      *
-     * @param refresh_token
+     * @param refreshToken
      * @return
      */
     @PostMapping("/sys/refresh_token")
-    public Map<String, Object> refresh_token(String refresh_token) {
-        Map<String, String> parameters = new HashMap<>();
+    public Map<String, Object> refreshToken(String refreshToken) {
+        Map<String, String> parameters = new HashMap<>(8);
         parameters.put(OAuth2Utils.GRANT_TYPE, "refresh_token");
         parameters.put(OAuth2Utils.CLIENT_ID, CommonConstants.CLIENT_ID);
         parameters.put("client_secret", CommonConstants.CLIENT_SECRET);
         parameters.put(OAuth2Utils.SCOPE, CommonConstants.CLIENT_SCOPE);
-        parameters.put("refresh_token", refresh_token);
+        parameters.put("refresh_token", refreshToken);
 
         return oauth2Client.postAccessToken(parameters);
     }
@@ -161,16 +161,16 @@ public class TokenController {
     /**
      * 退出
      *
-     * @param access_token
+     * @param accessToken
      */
     @GetMapping("/sys/logout")
-    public void logout(String access_token, @RequestHeader(required = false, value = "Authorization") String token) {
-        if (StringUtils.isBlank(access_token)) {
+    public void logout(String accessToken, @RequestHeader(required = false, value = "Authorization") String token) {
+        if (StringUtils.isBlank(accessToken)) {
             if (StringUtils.isNoneBlank(token)) {
-                access_token = token.substring(OAuth2AccessToken.BEARER_TYPE.length() + 1);
+                accessToken = token.substring(OAuth2AccessToken.BEARER_TYPE.length() + 1);
             }
         }
-        oauth2Client.removeToken(access_token);
+        oauth2Client.removeToken(accessToken);
     }
 }
 

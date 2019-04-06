@@ -29,7 +29,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 1:15.
  */
 @Slf4j
@@ -69,16 +69,16 @@ public class WechatServiceImpl implements WechatService {
             toUrl = URLEncoder.encode(toUrl, "utf-8");
             redirectUri.append("?toUrl=").append(toUrl);
         }
-        String redirect_uri = URLEncoder.encode(redirectUri.toString(), "utf-8");
+        String uri = URLEncoder.encode(redirectUri.toString(), "utf-8");
 
         // 生成一个随机串，微信再跳回来的时候，会原封不动给我们带过来，到时候做一下校验
         String state = UUID.randomUUID().toString();
         request.getSession().setAttribute(STATE_WECHAT, state);
 
-        return String.format(WECHAT_AUTHORIZE_URL, wechatInfo.getAppid(), redirect_uri, state);
+        return String.format(WECHAT_AUTHORIZE_URL, wechatInfo.getAppid(), uri, state);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public WechatUser getWechatUserInfo(String app, HttpServletRequest request, String code, String state) {
         log.info("code:{}, state:{}", code, state);
@@ -254,7 +254,7 @@ public class WechatServiceImpl implements WechatService {
     @Autowired
     private AppUserService appUserService;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void bindingUser(AppUser appUser, String tempCode, String openid) {
         WechatUser wechatUserInfo = checkAndGetWechatUserInfo(tempCode, openid);
@@ -273,6 +273,7 @@ public class WechatServiceImpl implements WechatService {
         log.info("{}，绑定微信成功，给微信设置用户id，{}", appUser, wechatUserInfo);
     }
 
+    @Override
     public WechatUser checkAndGetWechatUserInfo(String tempCode, String openid) {
         String key = prefixKey(tempCode);
         String string = stringRedisTemplate.opsForValue().get(key);

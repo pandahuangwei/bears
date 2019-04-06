@@ -26,7 +26,7 @@ public class BlackIPServiceImpl implements BlackIPService {
     @Autowired
     private BlackIPMapper blackIPMapper;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(BlackIP blackIP) {
         BlackIP ip = blackIPMapper.findByIp(blackIP.getIp());
@@ -38,7 +38,7 @@ public class BlackIPServiceImpl implements BlackIPService {
         log.info("添加黑名单ip:{}", blackIP);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void delete(String ip) {
         int n = blackIPMapper.delete(ip);

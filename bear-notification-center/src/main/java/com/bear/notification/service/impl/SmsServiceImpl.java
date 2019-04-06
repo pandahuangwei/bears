@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:48.
  */
 @Slf4j
@@ -93,7 +93,7 @@ public class SmsServiceImpl implements SmsService {
      * @param sms
      * @param params
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(Sms sms, Map<String, String> params) {
         if (!CollectionUtils.isEmpty(params)) {
@@ -107,7 +107,7 @@ public class SmsServiceImpl implements SmsService {
         smsMapper.save(sms);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void update(Sms sms) {
         sms.setUpdateTime(new Date());

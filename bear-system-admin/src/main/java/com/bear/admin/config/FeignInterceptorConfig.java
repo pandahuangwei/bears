@@ -36,10 +36,10 @@ public class FeignInterceptorConfig {
                 if (authentication != null) {
                     if (authentication instanceof OAuth2Authentication) {
                         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
-                        String access_token = details.getTokenValue();
+                        String accessToken = details.getTokenValue();
 
-                        template.header("Authorization", OAuth2AccessToken.BEARER_TYPE + " " + access_token);
-//						template.query(OAuth2AccessToken.ACCESS_TOKEN, access_token);
+                        template.header("Authorization", OAuth2AccessToken.BEARER_TYPE + " " + accessToken);
+//						template.query(OAuth2AccessToken.ACCESS_TOKEN, accessToken);
                     }
 
                 }

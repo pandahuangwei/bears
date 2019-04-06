@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-26 0:22.
+ * //@Primary
  */
-//@Primary
 @Service
 public class LogServiceImpl implements LogService {
     @Autowired

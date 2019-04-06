@@ -7,17 +7,22 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
- * @author panda.huangwei.
+ * @author panda.
  * @since 2018-11-25 23:51.
  */
 @EnableEurekaServer
 @SpringBootApplication
-public class RegisterCenterApp  extends SpringBootServletInitializer {
+public class RegisterCenterApp extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(RegisterCenterApp.class, args);
     }
 
-    //为了打包springboot项目
+    /**
+     * 为了打包springboot项目
+     *
+     * @param builder builder
+     * @return SpringApplicationBuilder
+     */
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(this.getClass());

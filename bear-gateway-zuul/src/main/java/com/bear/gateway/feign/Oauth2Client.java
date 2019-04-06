@@ -19,8 +19,8 @@ public interface Oauth2Client {
      * 获取access_token<br>
      * 这是spring-security-oauth2底层的接口，类TokenEndpoint<br>
      *
-     * @param parameters
-     * @return
+     * @param parameters 参数
+     * @return map
      * @see org.springframework.security.oauth2.provider.endpoint.TokenEndpoint
      */
     @PostMapping(path = "/oauth/token")
@@ -33,6 +33,6 @@ public interface Oauth2Client {
      * @param access_token
      */
     @DeleteMapping(path = "/remove_token")
-    void removeToken(@RequestParam("access_token") String access_token);
+    void removeToken(@RequestParam("access_token") String accessToken);
 
 }

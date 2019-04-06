@@ -131,7 +131,7 @@ public class ClientController {
         BaseClientDetails baseClientDetails = (BaseClientDetails) clientDetails;
         Map<String, Object> additionalInformation = baseClientDetails.getAdditionalInformation();
         if (additionalInformation == null) {
-            additionalInformation = new HashMap<>();
+            additionalInformation = new HashMap<>(8);
             baseClientDetails.setAdditionalInformation(additionalInformation);
         }
 
